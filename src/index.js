@@ -14,7 +14,10 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   console.log('a user connected');
   socket.on("stream", (image) =>{
-    socket.broadcast.emit("stream", image);
+	  var ret = Object.assign({}, image, {
+      frame: Buffer.from(data.frame, 'base64').toString() // from buffer to base64 string
+    }) 
+    socket.broadcast.emit("stream", ret);
 });
 });
 
