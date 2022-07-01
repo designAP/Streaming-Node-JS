@@ -5,6 +5,8 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+var sizeof = require('object-sizeof');
+
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', (req, res) => {
