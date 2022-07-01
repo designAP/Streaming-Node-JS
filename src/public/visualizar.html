@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <p> Visualizar Camara</p>
+
+    <img id="imagen_recibida" src="" style="width: 512px; height: 512px;"/>
+
+    <script>
+
+      var socket = io();
+      socket.on("stream", (image)=>{
+          let img = document.getElementById("imagen_recibida");
+          img.src = image;
+      });
+
+    </script>
+  </body>
+</html>

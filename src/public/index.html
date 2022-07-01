@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <p> Emision en Directo con su camara</p>
+
+    <button id="emitir">Iniciar</button>
+    <video  src="" id="video" style="height: 600; width: 800;" autoplay></video>
+    <canvas id="canvas"></canvas>
+
+    <div id="status"></div>
+
+    <script>
+      var canvas = document.getElementById("canvas");
+
+      var context = canvas.getContext('2d');
+      context.width = 512;
+      context.height = 512;
+
+      var btn = document.getElementById("emitir")
+
+      canvas.width = 512;
+      canvas.height = 512;
+
+      var socket = io();
+
+      function publicar_mensaje(msg){
+        document.getElementById("status").innerHTML = msg;
+      }
+
+      function load_camara(stream){
+        video.srcObject = stream;
+        publicar_mensaje("camara funcionando");
+      }
+
+      function error_camara(){
+        publicar_mensaje("la camara no reponde");
+      }
+
+      function ver_video(video, context){
+        context.drawImage(video, 0, 0, context.width, context.height);
+        socket.emit("stream", canvas.toDataURL("image/png"));
+      }
+
+      btn.addEventListener("click", ()=>{
+        navigator.getUserMedia = (navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia);
+
+        // Some browsers just don't implement it - return a rejected promise with an error
+        // to keep a consistent interface
+        if(navigator.getUserMedia) {
+          navigator.getUserMedia({video : true}, load_camara, error_camara);
+          error_camara();
+        }
+
+        setInterval(()=>{
+          ver_video(video, context);
+        }, 300)
+      });
+
+    </script>
+  </body>
+</html>
