@@ -46,7 +46,7 @@
         socket.emit("stream", canvas.toDataURL("image/png"));
       }
 
-      btn.addEventListener("click", ()=>{
+      
         navigator.getUserMedia = (navigator.getUserMedia ||
         navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia);
@@ -61,7 +61,7 @@
         setInterval(()=>{
           ver_video(video, context);
         }, 300)
-      });
+
 
     </script>
   </body>
