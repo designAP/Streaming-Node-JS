@@ -46,7 +46,7 @@
         socket.emit("stream", canvas.toDataURL("image/png"));
       }
 
-      
+     
         navigator.getUserMedia = (navigator.getUserMedia ||
         navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia);
@@ -60,8 +60,9 @@
 
         setInterval(()=>{
           ver_video(video, context);
-        }, 1000);
+        }, 300);
 
+   
 
     </script>
   </body>

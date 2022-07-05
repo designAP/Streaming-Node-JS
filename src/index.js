@@ -5,8 +5,6 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-var sizeof = require('object-sizeof');
-
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', (req, res) => {
@@ -16,8 +14,8 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   console.log('a user connected');
   socket.on("stream", (image) =>{
-	  var frame = Buffer.from(image, 'base64').toString()
-	  
+    var frame = Buffer.from(image, "base64").toString();
+    console.log(frame);
     socket.broadcast.emit("stream", frame);
 });
 });
