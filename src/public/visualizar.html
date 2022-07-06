@@ -18,6 +18,11 @@
           img.src = "data:image/jpg;base64,"+image;
       });
 
+      socket.on("audio", (audio)=>{
+        var snd = new Audio("data:audio/wav;base64," + audio);
+        snd.play();
+      });
+
     </script>
   </body>
 </html>
