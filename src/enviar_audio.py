@@ -17,7 +17,7 @@ while (True):
     
     #enc = base64.b64encode(open(myrecording, "rb").read())
     sf.write('myfile.wav', myrecording, fs, subtype='PCM_16')
-    enc = base64.b64encode(open('myfile.wav', "rb").read())
+    enc = base64.b64encode(open('audio.wav', "rb").read())
     sio.emit('audio', enc)   
 #print(enc)
 #sd.play(myrecording, fs)

@@ -10,18 +10,22 @@
 
     <img id="imagen_recibida" src="" style="width: 512px; height: 512px;"/>
 
+    <button onClick="reproducir()">Escuchar</button>
     <script>
+      function reproducir(){
 
-      var socket = io();
-      socket.on("stream", (image)=>{
-          let img =  document.getElementById("imagen_recibida");
-          img.src = "data:image/jpg;base64,"+image;
-      });
-
-      socket.on("audio", (audio)=>{
-        var snd = new Audio("data:audio/wav;base64," + audio);
-        snd.play();
-      });
+        var socket = io();
+        socket.on("stream", (image)=>{
+            let img =  document.getElementById("imagen_recibida");
+            img.src = "data:image/jpg;base64,"+image;
+        });
+        console.log("funciona boton");
+        socket.on("audio", (audio)=>{
+          console.log("audio: " + audio);
+          var snd = new Audio("data:audio/wav;base64," + audio);
+          snd.play();
+        });
+      }
 
     </script>
   </body>
