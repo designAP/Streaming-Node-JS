@@ -4,7 +4,7 @@ import base64
 import soundfile as sf
 
 sio = socketio.Client()
-sio.connect('http://localhost:3000')
+sio.connect('http://35.169.65.241:3000')
 
 fs=44100
 duration = 2  # seconds

@@ -13,11 +13,17 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on("stream", (image) =>{
-    var frame = Buffer.from(image, "base64").toString();
-    console.log(frame);
-    socket.broadcast.emit("stream", frame);
-});
+    socket.on("stream", (image) =>{
+      var frame = Buffer.from(image, "base64").toString();
+      console.log(frame);
+      socket.broadcast.emit("stream", frame);
+  });
+
+    socket.on("audio", (image) =>{
+      var frame = Buffer.from(image, "base64").toString();
+      console.log(frame);
+      socket.broadcast.emit("audio", frame);
+  });
 });
 
 server.listen(3000, () => {

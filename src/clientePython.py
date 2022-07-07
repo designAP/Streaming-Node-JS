@@ -26,7 +26,7 @@ def update():
         cap.release()
         sio.disconnect()
         print ("Hello World")
-        time.sleep(1)
+        time.sleep(0.5)
         
 print("Hello World")
 update()
